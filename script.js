@@ -79,6 +79,9 @@ function initBannerSlider(banner) {
 
 // 본문 3단 멀티 탭 및 시황 배너 시스템 생성 함수
 function createDashboardTabs(container) {
+    // 테마 간섭을 차단하기 위해, .main 또는 #page_body 컨테이너를 찾은 후 기존 구조 상단에 강제 삽입 시도합니다.
+    const targetContainer = document.querySelector('#page_body') || document.querySelector('.main') || container;
+    
     const tabSection = document.createElement('div');
     tabSection.className = 'dashboard-tab-section';
     tabSection.innerHTML = `
@@ -107,12 +110,12 @@ function createDashboardTabs(container) {
         </div>
     `;
 
-    // 롤링 뉴스 배너 바로 아래에 안정적으로 주입
-    const rollingBanner = container.querySelector('.rolling-banner-container');
+    // 롤링 배너 바로 다음에 주입되도록 설계하되, 컨테이너 안정성을 최우선으로 배치
+    const rollingBanner = document.querySelector('.rolling-banner-container');
     if (rollingBanner) {
         rollingBanner.parentNode.insertBefore(tabSection, rollingBanner.nextSibling);
     } else {
-        container.insertBefore(tabSection, container.firstChild);
+        targetContainer.insertBefore(tabSection, targetContainer.firstChild);
     }
 
     // 본문 대시보드 탭 클릭 전환 처리 로직 연동
