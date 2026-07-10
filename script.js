@@ -1,19 +1,60 @@
 // 블로그가 로드되면 실행
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. 블로그 본문이나 사이드바에 그래프를 그릴 도화지(Canvas) 자동 생성
     const mainContent = document.querySelector('.main') || document.body; 
+    
+    // 1. 미국 고용 지표 그래프 박스 생성
     const chartWrapper = document.createElement('div');
     chartWrapper.className = 'chart-container';
     chartWrapper.innerHTML = `
         <h3 style="margin-top:0; margin-bottom:15px; font-size:18px; color:#111;">미국 고용 지표 추이</h3>
         <canvas id="blsChart"></canvas>
     `;
-    // 원하는 위치에 배치 (여기서는 콘텐츠 최상단에 예시로 삽입)
     mainContent.insertBefore(chartWrapper, mainContent.firstChild);
 
-    // 2. 미국 고용노동부 API 호출 및 그래프 그리기 실행
+    // 2. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
+    createBottomNavigationBar();
+
+    // 3. 미국 고용노동부 API 호출 및 그래프 그리기 실행
     fetchBLSData();
 });
+
+// 모바일 하단 고정 네비게이션 바 동적 삽입 함수
+function createBottomNavigationBar() {
+    const bottomNav = document.createElement('div');
+    bottomNav.className = 'mobile-bottom-nav';
+    bottomNav.innerHTML = `
+        <a href="/" class="nav-item active">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/home.svg" alt="홈" class="nav-icon" />
+            <span class="nav-label">홈</span>
+        </a>
+        <a href="#dashboard" class="nav-item">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/bar-chart.svg" alt="지표" class="nav-icon" />
+            <span class="nav-label">지표</span>
+        </a>
+        <a href="#features" class="nav-item">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/zap.svg" alt="추천" class="nav-icon" />
+            <span class="nav-label">추천</span>
+        </a>
+        <a href="#notices" class="nav-item">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/bell.svg" alt="알림" class="nav-icon" />
+            <span class="nav-label">알림</span>
+        </a>
+        <a href="#settings" class="nav-item">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/settings.svg" alt="설정" class="nav-icon" />
+            <span class="nav-label">설정</span>
+        </a>
+    `;
+    document.body.appendChild(bottomNav);
+
+    // 하단 탭 클릭 시 활성화(Active) 변경 이벤트 추가
+    const navItems = bottomNav.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+}
 
 async function fetchBLSData() {
     // ※ 주의: 실제 대량 호출시 BLS에서 등록한 정식 API Key가 필요할 수 있습니다.

@@ -42,3 +42,80 @@ a {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
+
+/* 6. 모바일 하단 앱 스타일 고정 네비게이션 바 (Bottom Tab Bar) */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px); /* 토스, 인스타 감성의 흐린 투명 유리 효과 */
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999; /* 화면 최상위 고정 */
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04);
+    max-width: 600px; /* 스마트폰 가로 폭 최적화 */
+    margin: 0 auto;
+    padding-bottom: env(safe-area-inset-bottom); /* 아이폰 하단 바 홈버튼 영역 대응 */
+}
+
+/* 개별 네비게이션 버튼 */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    width: 20%;
+    height: 100%;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+/* 클릭 시 터치 효과 감성 */
+.nav-item:active {
+    transform: scale(0.95);
+}
+
+/* 아이콘 크기 스타일 */
+.nav-icon {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 4px;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+/* 활성화 상태 (액티브) 스타일 */
+.nav-item.active {
+    color: var(--primary-color) !important;
+}
+
+.nav-item.active .nav-icon {
+    opacity: 1;
+    /* 인디고 블루 포인트 컬러 필터효과 */
+    filter: drop-shadow(0px 1px 2px rgba(79, 70, 229, 0.2));
+}
+
+.nav-label {
+    transition: font-weight 0.2s ease;
+}
+
+.nav-item.active .nav-label {
+    font-weight: 700;
+}
+
+/* 화면이 넓은 PC 환경에서는 하단 네비 바 숨기기 (반응형 최적화) */
+@media screen and (min-width: 801px) {
+    .mobile-bottom-nav {
+        display: none !important;
+    }
+}
+
