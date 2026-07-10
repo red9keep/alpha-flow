@@ -2957,8 +2957,18 @@ margin-left:40px
 
     <script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'/>
 
+    <!-- Blogger 고유 CSS 주입을 유지하면서 내부적으로 기능을 트리거하는 인라인 안전 코드 주입 -->
+    <script type='text/javascript'>
+      //<![CDATA[
+      document.addEventListener("DOMContentLoaded", function() {
+          console.log("인라인 블로거 자바스크립트 가동!");
+          alert("블로거 템플릿 인라인 자바스크립트가 정상적으로 차단 없이 작동 중입니다!");
+      });
+      //]]>
+    </script>
+
     <!-- 외부 깃허브 CSS 디자인 연결 (jsDelivr 캐시 버스터 적용) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?v=1.0.7" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?v=1.0.8" />
   </head>
 
   <body>
@@ -4116,6 +4126,6 @@ margin-left:40px
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- 외부 깃허브 자바스크립트 기능 연결 (jsDelivr 캐시 버스터 적용) -->
-    <script src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/script.js?v=1.0.7"></script>
+    <script src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/script.js?v=1.0.8"></script>
   </body>
 </html>
