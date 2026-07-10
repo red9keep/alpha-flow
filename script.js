@@ -2,21 +2,77 @@
 document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.querySelector('.main') || document.body; 
     
-    // 1. 미국 고용 지표 그래프 박스 생성
-    const chartWrapper = document.createElement('div');
-    chartWrapper.className = 'chart-container';
-    chartWrapper.innerHTML = `
-        <h3 style="margin-top:0; margin-bottom:15px; font-size:18px; color:#111;">미국 고용 지표 추이</h3>
-        <canvas id="blsChart"></canvas>
-    `;
-    mainContent.insertBefore(chartWrapper, mainContent.firstChild);
+    // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
+    createRollingNewsBanner(mainContent);
 
     // 2. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
     createBottomNavigationBar();
-
-    // 3. 미국 고용노동부 API 호출 및 그래프 그리기 실행
-    fetchBLSData();
 });
+
+// 상단 D-DAY 실적 롤링 뉴스 슬라이더 배너 생성 함수
+function createRollingNewsBanner(container) {
+    const bannerWrapper = document.createElement('div');
+    bannerWrapper.className = 'rolling-banner-container';
+    
+    // 뉴스 슬라이더 내부 리스트 마크업 (실적 및 일정 배지 형태)
+    bannerWrapper.innerHTML = `
+        <div class="banner-slide-wrapper">
+            <div class="banner-slide active">
+                <div class="banner-content">
+                    <span class="dday-badge">D-DAY</span>
+                    <span class="banner-title">AVGO 브로드컴 실적 발표 및 분석 가이드</span>
+                </div>
+                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
+            </div>
+            <div class="banner-slide">
+                <div class="banner-content">
+                    <span class="dday-badge info">D-3</span>
+                    <span class="banner-title">TSMC 월간 매출 실적 속보 및 가동률 분석</span>
+                </div>
+                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
+            </div>
+            <div class="banner-slide">
+                <div class="banner-content">
+                    <span class="dday-badge success">EVENT</span>
+                    <span class="banner-title">미국 CPI 발표 일정 및 연준 금리 모니터링</span>
+                </div>
+                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
+            </div>
+        </div>
+        <div class="banner-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    `;
+    
+    // 최상단 콘텐츠 본문 위에 안전하게 삽입
+    container.insertBefore(bannerWrapper, container.firstChild);
+
+    // 롤링 뉴스 슬라이더 타이머 구동 시스템
+    initBannerSlider(bannerWrapper);
+}
+
+// 배너 롤링 로직 시스템
+function initBannerSlider(banner) {
+    const slides = banner.querySelectorAll('.banner-slide');
+    const dots = banner.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const slideInterval = 4000; // 4초마다 롤링
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    // 주기적인 인터벌 타이머 실행
+    setInterval(nextSlide, slideInterval);
+}
 
 // 모바일 하단 고정 네비게이션 바 동적 삽입 함수
 function createBottomNavigationBar() {
@@ -53,90 +109,5 @@ function createBottomNavigationBar() {
             navItems.forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
         });
-    });
-}
-
-async function fetchBLSData() {
-    const apiUrl = 'https://api.bls.gov/publicAPI/v2/timeseries/data/LNS14000000'; // 미국 실업률 시리즈 ID
-    
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        
-        // 데이터가 성공적으로 정상 수집되었을 경우
-        if (data.status === "REQUEST_SUCCEEDED" && data.results && data.results.series && data.results.series[0]) {
-            const seriesData = data.results.series[0].data;
-            renderChart(seriesData);
-        } else {
-            // 한도 초과 오류 등이 났을 때, 자동으로 대체 예시 데이터(Mock Data) 활용
-            console.warn("BLS API가 제한 한도를 넘었거나 비정상 응답을 하여 로컬 오프라인 데이터로 전환합니다.");
-            useMockData();
-        }
-    } catch (error) {
-        console.error("미국 노동부 API 호출 실패, 로컬 오프라인 데이터를 불러옵니다:", error);
-        useMockData();
-    }
-}
-
-// 가짜 실업률 대체 데이터로 렌더링을 안전하게 방어하는 함수
-function useMockData() {
-    const mockSeriesData = [
-      { year: "2026", periodName: "June", value: "4.1" },
-      { year: "2026", periodName: "May", value: "4.0" },
-      { year: "2026", periodName: "April", value: "3.9" },
-      { year: "2026", periodName: "March", value: "3.8" },
-      { year: "2026", periodName: "February", value: "3.9" },
-      { year: "2026", periodName: "January", value: "3.7" }
-    ];
-    renderChart(mockSeriesData);
-}
-
-// Chart.js를 이용해 꺾은선 그래프 생성하는 핵심 렌더러
-function renderChart(seriesData) {
-    // 최근 6개월 데이터 추출 및 정렬
-    const recentData = seriesData.slice(0, 6).reverse();
-    const labels = recentData.map(item => `${item.year}-${item.periodName}`);
-    const values = recentData.map(item => parseFloat(item.value));
-    
-    const ctx = document.getElementById('blsChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '미국 실업률 (%)',
-                data: values,
-                borderColor: '#4f46e5',
-                backgroundColor: 'rgba(79, 70, 229, 0.08)',
-                borderWidth: 2.5,
-                tension: 0.35,
-                pointBackgroundColor: '#4f46e5',
-                pointBorderColor: '#ffffff',
-                pointBorderWidth: 1.5,
-                pointRadius: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false, /* 상자 안에 가득 차게 반응형 제어 */
-            scales: { 
-                y: { 
-                    beginAtZero: false,
-                    grid: {
-                        color: '#f3f4f6'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false /* 지저분한 범례 제거하고 미니멀화 */
-                }
-            }
-        }
     });
 }
