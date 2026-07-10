@@ -35,12 +35,14 @@ a {
 /* 5. 미국 노동부 그래프가 들어갈 상자 스타일 (안전 규격 지정) */
 .chart-container {
     max-width: 780px;
+    height: 320px; /* 고정된 높이를 지정하여 차트 찌그러짐 원천 방지 */
     margin: 20px auto;
     padding: 20px;
     background: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
 }
 
 /* 6. 모바일 하단 앱 스타일 고정 네비게이션 바 (Bottom Tab Bar) */
