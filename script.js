@@ -1,5 +1,8 @@
 // 블로그가 로드되면 실행
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("AlphaFlow script.js DOMContentLoaded 트리거 완료!");
+    alert("AlphaFlow script.js 정상 연결되었습니다!");
+
     const mainContent = document.querySelector('.main') || document.body; 
     
     // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
