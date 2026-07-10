@@ -1,3 +1,6 @@
+// 블로그가 로드되면 즉시 연결 성공 경고창 출력
+alert("축하합니다! VS Code와 구글 블로그가 성공적으로 연결되었습니다!");
+
 // 블로그가 로드되면 실행
 document.addEventListener("DOMContentLoaded", function () {
     // 1. 블로그 본문이나 사이드바에 그래프를 그릴 도화지(Canvas) 자동 생성
