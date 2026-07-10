@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
     createRollingNewsBanner(mainContent);
 
-    // 2. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
+    // 2. 본문 멀티 탭 메뉴 및 시황 배너 삽입 (Step 7)
+    createDashboardTabs(mainContent);
+
+    // 3. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
     createBottomNavigationBar();
 });
 
@@ -72,6 +75,79 @@ function initBannerSlider(banner) {
 
     // 주기적인 인터벌 타이머 실행
     setInterval(nextSlide, slideInterval);
+}
+
+// 본문 3단 멀티 탭 및 시황 배너 시스템 생성 함수
+function createDashboardTabs(container) {
+    const tabSection = document.createElement('div');
+    tabSection.className = 'dashboard-tab-section';
+    tabSection.innerHTML = `
+        <!-- 3단 본문 대시보드 탭 메뉴 -->
+        <div class="dashboard-tabs">
+            <button class="tab-btn" data-tab="alpha">알파종목</button>
+            <button class="tab-btn active" data-tab="news">최신뉴스</button>
+            <button class="tab-btn" data-tab="assets">보유자산</button>
+        </div>
+
+        <!-- 최신 뉴스 하위 2단계 서브 탭 메뉴 -->
+        <div class="sub-tabs-bar" id="newsSubTabs">
+            <button class="sub-tab active" data-sub="all">뉴스</button>
+            <button class="sub-tab" data-sub="damjamsa">당잠사</button>
+            <button class="sub-tab" data-sub="madmoney">매드머니</button>
+            <button class="sub-tab" data-sub="video">영상뉴스</button>
+        </div>
+
+        <!-- 시황 안내 가이드 배너 -->
+        <div class="guide-banner-card">
+            <div class="guide-badge">시황 가이드</div>
+            <div class="guide-content-wrapper">
+                <div class="guide-title">보수 관망 권장</div>
+                <div class="guide-desc">현재 시장은 정상 범위 내의 단기 조정장입니다. 추가 매수를 자제하고, 권장 비중(48%)에 맞춰 현금 자산을 쥔 채 보수적으로 관망하십시오. (1일 연속 상승 중)</div>
+            </div>
+        </div>
+    `;
+
+    // 롤링 뉴스 배너 바로 아래에 안정적으로 주입
+    const rollingBanner = container.querySelector('.rolling-banner-container');
+    if (rollingBanner) {
+        rollingBanner.parentNode.insertBefore(tabSection, rollingBanner.nextSibling);
+    } else {
+        container.insertBefore(tabSection, container.firstChild);
+    }
+
+    // 본문 대시보드 탭 클릭 전환 처리 로직 연동
+    initDashboardTabs(tabSection);
+}
+
+// 탭 클릭 제어 및 서브 탭 노출 토글 연동 로직
+function initDashboardTabs(section) {
+    const tabButtons = section.querySelectorAll('.tab-btn');
+    const subTabsBar = section.querySelector('#newsSubTabs');
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            tabButtons.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const selectedTab = this.getAttribute('data-tab');
+
+            // '최신뉴스' 탭이 눌렸을 때만 2단계 하위 서브 탭 노출
+            if (selectedTab === 'news') {
+                subTabsBar.style.display = 'flex';
+            } else {
+                subTabsBar.style.display = 'none';
+            }
+        });
+    });
+
+    // 2단계 서브 탭 메뉴 하이라이트 이벤트
+    const subTabs = section.querySelectorAll('.sub-tab');
+    subTabs.forEach(sub => {
+        sub.addEventListener('click', function() {
+            subTabs.forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 }
 
 // 모바일 하단 고정 네비게이션 바 동적 삽입 함수
