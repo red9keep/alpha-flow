@@ -330,10 +330,10 @@ a {
     font-weight: 700;
 }
 
-/* 화면이 넓은 PC 환경에서는 하단 네비 바 숨기기 (반응형 최적화) */
+/* 화면이 넓은 PC 환경과 모바일 환경 모두에서 테스트 관찰을 위해 미디어 가드 일시 해제 */
 @media screen and (min-width: 801px) {
     .mobile-bottom-nav {
-        display: none !important;
+        display: flex !important; /* 항상 노출 테스트 */
     }
 }
 
