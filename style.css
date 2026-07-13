@@ -26,27 +26,51 @@ body, html {
     -webkit-font-smoothing: antialiased;
 }
 
-/* 3-2. 헤더 영역 세련된 로고화 오버라이드 */
-.centered-top-container, .header-widget {
-    background-color: #0b0e14 !important; /* 헤더 영역 다크 다크 그레이 배경화 */
-    padding: 10px 0 !important;
+/* 3-2. 헤더 영역 세련된 로고화 오버라이드 (화이트 모바일 앱 테마) */
+.centered-top-placeholder, .centered-top-container, .Header {
+    display: none !important; /* 구글 블로그 기본 지저분한 헤더 영역을 차단 */
 }
 
-.Header h1, .Header h1 a, .Header h1 a:hover, .Header h1 a:visited {
-    color: #ffffff !important;
+/* 동적 생성 화이트 앱 헤더 스타일 */
+.af-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 12px 20px !important;
+    max-width: 780px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.af-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.af-logo-icon {
+    width: 35px !important;
+    height: 32px !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+}
+
+.af-logo-text {
     font-weight: 900 !important;
-    font-size: 26px !important;
+    font-size: 20px !important;
+    color: #000000 !important;
+    white-space: nowrap !important;
     letter-spacing: -0.5px !important;
-    background: transparent !important;
 }
 
-.Header p {
-    display: none !important; /* 부제목은 헤더 로고화를 위해 숨김 */
-}
-
-.blog-name {
-    margin: 8px 0 4px 0 !important;
-    background-color: transparent !important;
+.af-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-color: #f9fafb !important;
+    border: 1px solid #e5e7eb !important;
 }
 
 /* 4. 링크 스타일 초기화 */
@@ -55,108 +79,131 @@ a {
     text-decoration: none;
 }
 
-/* 5. 상단 롤링 뉴스 슬라이더 배너 (Rolling Banner Container) */
-.rolling-banner-container {
-    max-width: 780px;
-    margin: 20px auto;
-    padding: 16px 20px;
-    background: #111827; /* 다크 네이비 / 차콜 톤 */
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-    height: 56px; /* 모던한 미니멀 높이 고정 */
-    box-sizing: border-box;
+/* 5. 상단 다크 히어로 실적 배너 (Hero Section) */
+.af-hero {
+    background: #101828 !important; /* 다크 블루 블랙 테마 */
+    padding: 24px 20px !important;
+    max-width: 780px !important;
+    margin: 0 auto 20px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
 
-.banner-slide-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.af-hero-slide-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    height: 64px !important; /* 볼드한 2줄 텍스트 고정 높이 */
 }
 
-.banner-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
+.af-hero-slide {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.5s ease-in-out !important;
 }
 
-.banner-slide.active {
-    opacity: 1;
-    pointer-events: auto;
+.af-hero-slide.active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
-.banner-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    overflow: hidden;
+.af-hero-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+.af-hero-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.af-hero-title-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.af-hero-ticker {
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #ffffff !important;
+    white-space: nowrap !important;
 }
 
 /* D-DAY 배지 디자인 */
-.dday-badge {
-    background-color: #ef4444; /* 강렬한 레드 */
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    flex-shrink: 0;
+.af-badge-dday {
+    background: #f43f5e !important; /* 강렬한 레드/로즈색 */
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+    font-weight: 800 !important;
+    font-size: 10px !important;
+    color: #ffffff !important;
+    white-space: nowrap !important;
+    text-transform: uppercase !important;
 }
 
-.dday-badge.info {
-    background-color: #3b82f6; /* 블루 */
+.af-badge-dday.info {
+    background: #3b82f6 !important; /* 블루 */
 }
 
-.dday-badge.success {
-    background-color: #10b981; /* 그린 */
+.af-badge-dday.success {
+    background: #10b981 !important; /* 그린 */
 }
 
-.banner-title {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.af-hero-subtitle {
+    font-weight: 800 !important;
+    font-size: 24px !important;
+    color: #ffffff !important;
+    white-space: nowrap !important;
 }
 
-.banner-arrow {
-    width: 18px;
-    height: 18px;
-    opacity: 0.7;
-    filter: invert(1); /* 흰색 화살표로 변환 */
-    flex-shrink: 0;
+.af-hero-arrow {
+    width: 24px !important;
+    height: 24px !important;
+    opacity: 0.7 !important;
+    filter: invert(1) !important; /* 흰색 화살표 변환 */
+    flex-shrink: 0 !important;
 }
 
 /* 슬라이드 닷 표시기 */
-.banner-dots {
-    position: absolute;
-    bottom: 6px;
-    right: 20px;
-    display: flex;
-    gap: 4px;
+.af-dots {
+    display: flex !important;
+    gap: 6px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
 }
 
-.dot {
-    width: 4px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
+.af-dot {
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50% !important;
+    background: #6B7280 !important;
+    transition: all 0.3s ease !important;
 }
 
-.dot.active {
-    background-color: #ffffff;
+.af-dot-active {
+    background: #3b82f6 !important; /* 블루 컬러 */
+    height: 4px !important;
+    width: 11px !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
 }
 
 /* 5-2. 본문 3단 멀티 탭 및 시황 가이드 영역 스타일링 (Step 7) */

@@ -1,7 +1,6 @@
 // 블로그가 로드되면 실행
 document.addEventListener("DOMContentLoaded", function () {
     console.log("AlphaFlow script.js DOMContentLoaded 트리거 완료!");
-    alert("AlphaFlow script.js 정상 연결되었습니다!");
 
     const mainContent = document.querySelector('.main') || document.body; 
     
@@ -114,7 +113,7 @@ function createDashboardTabs(container) {
     `;
 
     // 롤링 배너 바로 다음에 주입되도록 설계하되, 컨테이너 안정성을 최우선으로 배치
-    const rollingBanner = document.querySelector('.rolling-banner-container');
+    const rollingBanner = document.querySelector('.af-hero');
     if (rollingBanner) {
         rollingBanner.parentNode.insertBefore(tabSection, rollingBanner.nextSibling);
     } else {
