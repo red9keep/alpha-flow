@@ -27,11 +27,17 @@ body, html {
 }
 
 /* 3-2. 헤더 영역 세련된 로고화 오버라이드 */
+.centered-top-container, .header-widget {
+    background-color: #0b0e14 !important; /* 헤더 영역 다크 다크 그레이 배경화 */
+    padding: 10px 0 !important;
+}
+
 .Header h1, .Header h1 a, .Header h1 a:hover, .Header h1 a:visited {
     color: #ffffff !important;
     font-weight: 900 !important;
-    font-size: 24px !important;
+    font-size: 26px !important;
     letter-spacing: -0.5px !important;
+    background: transparent !important;
 }
 
 .Header p {
@@ -39,7 +45,8 @@ body, html {
 }
 
 .blog-name {
-    margin: 16px 0 10px 0 !important;
+    margin: 8px 0 4px 0 !important;
+    background-color: transparent !important;
 }
 
 /* 4. 링크 스타일 초기화 */
