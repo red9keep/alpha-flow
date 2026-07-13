@@ -3014,7 +3014,7 @@ margin-left:40px
           // 1. 외부 최신 스타일시트(style.css) 동적 인젝션
           const link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href = `https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?purge=${bust}`;
+          link.href = `https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?purge=${bust}`.replace(/&/g, '&amp;');
           document.head.appendChild(link);
 
           // 2. 외부 동적 기능 스크립트(script.js) 대신, 브라우저 캐시 장애를 원천 차단하기 위해 본문에 스크립트 엔진 직접 매립 가동 (방법 B)
