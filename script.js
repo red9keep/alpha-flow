@@ -2,12 +2,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("AlphaFlow script.js DOMContentLoaded 트리거 완료!");
 
-    // [방법 2] 구글 블로그 테마 고유 가중치에 의해 상단에 강제 노출되는 구식 헤더 및 위젯 노드를 완전 박멸합니다.
-    const oldHeader = document.querySelector('.centered-top-container') || document.querySelector('header') || document.querySelector('.header-widget');
-    if (oldHeader) {
-        console.log("구식 헤더 발견 및 물리적 완전 삭제 실행:", oldHeader);
-        oldHeader.remove();
-    }
+    // [테스트 단계] 구식 헤더를 무조건 0.1초(100ms) 뒤에 강제로 찾아서 지워보는 정밀 검증용 일시적 제거 테스트
+    setTimeout(function() {
+        const targetElements = document.querySelectorAll('.centered-top-container, .centered-top-placeholder, header, .header-widget, .blog-name');
+        console.log("테스트 100ms 지연 타겟 탐색 결과 개수:", targetElements.length);
+        targetElements.forEach(el => {
+            console.log("대상 요소를 물리적으로 파괴합니다:", el);
+            el.remove();
+        });
+    }, 100);
 
     const mainContent = document.querySelector('.main') || document.body; 
     
