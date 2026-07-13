@@ -3298,8 +3298,18 @@ margin-left:40px
       //]]>
     </script>
 
-    <!-- 외부 깃허브 CSS 디자인 연결 (jsDelivr 캐시 버스터 적용 및 최신 스타일시트 동기화) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?v=1.2.0" />
+    <!-- 외부 깃허브 CSS 실시간 동적 캐시 무력화 주입기 (최초 1회 등록 후 영원히 자동화) -->
+    <script type='text/javascript'>
+      //<![CDATA[
+      (function() {
+          const bust = new Date().getTime(); // 밀리초 타임스탬프 자동 생성
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = `https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/style.css?v=${bust}`;
+          document.head.appendChild(link);
+      })();
+      //]]>
+    </script>
   </head>
 
   <body>
