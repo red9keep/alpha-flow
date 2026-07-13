@@ -405,6 +405,18 @@ a {
     color: #7c3aed;
 }
 
+/* ==========================================================================
+   구글 블로그 기본 하단 Powered by Blogger 가젯 차단 및 소멸
+   ========================================================================== */
+.Attribution, #Attribution1, .attribution, footer .Attribution {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 /* 주식 종목 리스트 */
 .af-stock-list {
     display: flex;
