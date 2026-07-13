@@ -40,7 +40,7 @@ function createBrandLogoHeader(container) {
     brandHeader.className = 'af-header';
     brandHeader.innerHTML = `
         <div class="af-logo">
-            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/logo.png" class="af-logo-icon" style="width: 35px !important; height: 32px !important; min-width: 35px !important; min-height: 32px !important; max-width: 35px !important; max-height: 32px !important; object-fit: contain !important; display: inline-block !important; flex-shrink: 0 !important; vertical-align: middle !important;" onerror="this.src='https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/zap.svg'" />
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/logo.png" class="af-logo-icon" onerror="this.src='https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/zap.svg'" />
             <span class="af-logo-text">AlphaFlow</span>
         </div>
         <div class="af-avatar-wrapper">
@@ -68,7 +68,7 @@ function createRollingNewsBanner(container) {
                         </div>
                         <span class="af-hero-subtitle">브로드컴 실적 발표 및 분석 가이드</span>
                     </div>
-                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-arrow" />
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-hero-arrow" />
                 </div>
             </div>
             <div class="af-hero-slide">
@@ -78,6 +78,30 @@ function createRollingNewsBanner(container) {
                             <span class="af-badge-dday info">D-3</span>
                             <span class="af-hero-ticker">TSMC</span>
                         </div>
+                        <span class="af-hero-subtitle">월간 매출 실적 속보 및 가동률 분석</span>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-hero-arrow" />
+                </div>
+            </div>
+            <div class="af-hero-slide">
+                <div class="af-hero-content">
+                    <div class="af-hero-info">
+                        <div class="af-hero-title-row">
+                            <span class="af-badge-dday success">EVENT</span>
+                            <span class="af-hero-ticker">CPI</span>
+                        </div>
+                        <span class="af-hero-subtitle">미국 CPI 발표 일정 및 금리 모니터링</span>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-hero-arrow" />
+                </div>
+            </div>
+        </div>
+        <div class="af-dots">
+            <span class="af-dot active"></span>
+            <span class="af-dot"></span>
+            <span class="af-dot"></span>
+        </div>
+    `;
                         <span class="af-hero-subtitle">월간 매출 실적 속보 및 가동률 분석</span>
                     </div>
                     <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-arrow" />
