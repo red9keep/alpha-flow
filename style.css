@@ -26,6 +26,22 @@ body, html {
     -webkit-font-smoothing: antialiased;
 }
 
+/* 3-2. 헤더 영역 세련된 로고화 오버라이드 */
+.Header h1, .Header h1 a, .Header h1 a:hover, .Header h1 a:visited {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    letter-spacing: -0.5px !important;
+}
+
+.Header p {
+    display: none !important; /* 부제목은 헤더 로고화를 위해 숨김 */
+}
+
+.blog-name {
+    margin: 16px 0 10px 0 !important;
+}
+
 /* 4. 링크 스타일 초기화 */
 a {
     color: inherit;
