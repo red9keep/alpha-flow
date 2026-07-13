@@ -17,15 +17,39 @@ document.addEventListener("DOMContentLoaded", function () {
         if (purgeCount > 30) {
             clearInterval(purgeInterval);
         }
-    // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
+    }, 100);
+
+    const mainContent = document.querySelector('.main') || document.body; 
+    
+    // 1. 모바일 화이트 상단 헤더 로고 바 먼저 삽입 (가장 먼저 배치)
+    createBrandLogoHeader(mainContent);
+
+    // 2. 상단 D-DAY 실적 롤링 뉴스 슬라이더 배너(이벤트 영역) 주입 (두 번째 배치)
     createRollingNewsBanner(mainContent);
 
-    // 2. 본문 멀티 탭 메뉴 및 시황 배너 삽입 (Step 7)
+    // 3. 본문 3단 멀티 탭 메뉴 및 시황 가이드 배너 주입 (세 번째 배치)
     createDashboardTabs(mainContent);
 
-    // 3. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
+    // 4. 모바일 하단 앱 스타일 고정 네비게이션 바(Bottom Tab Bar) 삽입
     createBottomNavigationBar();
 });
+
+// 화이트 상단 브랜드 헤더(로고 바) 동적 생성 함수
+function createBrandLogoHeader(container) {
+    const brandHeader = document.createElement('div');
+    brandHeader.className = 'af-header';
+    brandHeader.innerHTML = `
+        <div class="af-logo">
+            <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/logo.png" class="af-logo-icon" onerror="this.src='https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/zap.svg'" />
+            <span class="af-logo-text">AlphaFlow</span>
+        </div>
+        <div class="af-avatar-wrapper">
+            <div class="af-avatar"></div>
+        </div>
+    `;
+    // 컨테이너 가장 처음에 주입
+    container.insertBefore(brandHeader, container.firstChild);
+}
 
 // 상단 D-DAY 실적 롤링 뉴스 슬라이더 배너 생성 함수
 function createRollingNewsBanner(container) {
@@ -64,8 +88,13 @@ function createRollingNewsBanner(container) {
         </div>
     `;
     
-    // 최상단 콘텐츠 본문 위에 안전하게 삽입
-    container.insertBefore(bannerWrapper, container.firstChild);
+    // 로고 헤더(.af-header) 바로 뒤에 안전하게 삽입
+    const brandHeader = document.querySelector('.af-header');
+    if (brandHeader) {
+        brandHeader.parentNode.insertBefore(bannerWrapper, brandHeader.nextSibling);
+    } else {
+        container.insertBefore(bannerWrapper, container.firstChild);
+    }
 
     // 롤링 뉴스 슬라이더 타이머 구동 시스템
     initBannerSlider(bannerWrapper);
@@ -125,8 +154,8 @@ function createDashboardTabs(container) {
         </div>
     `;
 
-    // 롤링 배너 바로 다음에 주입되도록 설계하되, 컨테이너 안정성을 최우선으로 배치
-    const rollingBanner = document.querySelector('.af-hero');
+    // 롤링 뉴스 배너(.rolling-banner-container) 바로 다음에 주입되도록 설계
+    const rollingBanner = document.querySelector('.rolling-banner-container');
     if (rollingBanner) {
         rollingBanner.parentNode.insertBefore(tabSection, rollingBanner.nextSibling);
     } else {
