@@ -198,7 +198,7 @@ a {
     transition: all 0.3s ease !important;
 }
 
-.af-dot-active {
+.af-dot.active {
     background: #3b82f6 !important; /* 블루 컬러 */
     height: 4px !important;
     width: 11px !important;
