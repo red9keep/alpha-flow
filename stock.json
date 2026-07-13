@@ -1,0 +1,68 @@
+{
+  "last_updated": "2026-07-13",
+  "tiers": [
+    {
+      "tier_name": "1티어: 골든 알파",
+      "tier_badge": "★",
+      "tier_color": "#f97316",
+      "stocks": [
+        {
+          "ticker": "BABA",
+          "company": "알리바바 그룹",
+          "price": "$111.14",
+          "change": "▲$2.16(+1.98%)",
+          "change_type": "up",
+          "rank": "2위",
+          "status_badge": {
+            "text": "시간 손절",
+            "type": "cut"
+          },
+          "detail_info": "중국 내수 부양책 및 알리바바 클라우드 글로벌 확장 전략이 주효함. 강력한 현금 흐름 및 자사주 매입 지속으로 메이저 수급의 지속 유입 확인."
+        },
+        {
+          "ticker": "BIDU",
+          "company": "바이두",
+          "price": "$117.51",
+          "change": "▼$0.11(-0.09%)",
+          "change_type": "down",
+          "rank": "3위",
+          "status_badge": {
+            "text": "수집 완료",
+            "type": "done"
+          },
+          "detail_info": "자율주행 아폴로 플랫폼의 규제 승인 소식. 단기 차익 실현 매물이 출회되고 있으나 모바일 생태계 광고 매출 반등 및 기관 순매수로 하방 지지력 강함."
+        }
+      ]
+    },
+    {
+      "tier_name": "2티어: 선행 내러티브 수급",
+      "tier_badge": "✉",
+      "tier_color": "#101828",
+      "stocks": [
+        {
+          "ticker": "SK하이닉스",
+          "company": "",
+          "price": "227,000원",
+          "change": "▲8,000원(+3.65%)",
+          "change_type": "up",
+          "rank": "1위",
+          "status_badge": {
+            "text": "시간 손절",
+            "type": "cut"
+          },
+          "detail_info": "HBM3E 고대역폭 메모리의 엔비디아 공급 확대 및 차세대 HBM4 개발 가속화 모멘텀. 기관 및 외국인의 압도적인 쌍끌이 매수 관찰."
+        },
+        {
+          "ticker": "AMAT",
+          "company": "어플라이드 머티어리얼즈",
+          "price": "$214.50",
+          "change": "▲$4.20(+2.00%)",
+          "change_type": "up",
+          "rank": "4위",
+          "status_badge": null,
+          "detail_info": "글로벌 파운드리 미세화 공정 장비 수요 폭발로 수주 잔고 역대 최고치 경신. 고수익성 서비스 매출 비중 확대로 이익률 개선 전망."
+        }
+      ]
+    }
+  ]
+}
