@@ -2,6 +2,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("AlphaFlow script.js DOMContentLoaded 트리거 완료!");
 
+    // [방법 2] 구글 블로그 테마 고유 가중치에 의해 상단에 강제 노출되는 구식 헤더 및 위젯 노드를 완전 박멸합니다.
+    const oldHeader = document.querySelector('.centered-top-container') || document.querySelector('header') || document.querySelector('.header-widget');
+    if (oldHeader) {
+        console.log("구식 헤더 발견 및 물리적 완전 삭제 실행:", oldHeader);
+        oldHeader.remove();
+    }
+
     const mainContent = document.querySelector('.main') || document.body; 
     
     // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
