@@ -2,18 +2,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("AlphaFlow script.js DOMContentLoaded 트리거 완료!");
 
-    // [테스트 단계] 구식 헤더를 무조건 0.1초(100ms) 뒤에 강제로 찾아서 지워보는 정밀 검증용 일시적 제거 테스트
-    setTimeout(function() {
+    // [테스트 단계] 지연 시간을 0ms, 100ms, 500ms, 1000ms 등 다각도로 반복 지우는 실시간 감시 시스템(Interval) 도입
+    let purgeCount = 0;
+    const purgeInterval = setInterval(function() {
         const targetElements = document.querySelectorAll('.centered-top-container, .centered-top-placeholder, header, .header-widget, .blog-name');
-        console.log("테스트 100ms 지연 타겟 탐색 결과 개수:", targetElements.length);
-        targetElements.forEach(el => {
-            console.log("대상 요소를 물리적으로 파괴합니다:", el);
-            el.remove();
-        });
-    }, 100);
-
-    const mainContent = document.querySelector('.main') || document.body; 
-    
+        if (targetElements.length > 0) {
+            targetElements.forEach(el => {
+                console.log("실시간 감시 엔진이 구식 헤더를 물리적으로 삭제함:", el);
+                el.remove();
+            });
+        }
+        purgeCount++;
+        // 3초 동안 지독하게 감시하며 나오는 즉시 파괴한 후 타이머를 해제합니다.
+        if (purgeCount > 30) {
+            clearInterval(purgeInterval);
+        }
     // 1. 상단 롤링 뉴스 슬라이더 배너 자동 생성 및 삽입
     createRollingNewsBanner(mainContent);
 
