@@ -22,18 +22,36 @@ body {
     display: none !important;
 }
 
-/* [구글 강제 덮어쓰기 무력화] 최상단 헤더 다크 테마 고정 */
-.centered-top-container, .header-widget {
+/* [구글 강제 덮어쓰기 무력화] 최상단 헤더 다크 테마 고정 및 브랜드 로고화 */
+body .centered-top-container, body .header-widget, body .blog-name {
     background-color: #0b0e14 !important;
     background: #0b0e14 !important;
     padding: 10px 0 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
+
+/* 좌측 로고 강제 노출 및 텍스트 조합 */
+.Header h1::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    vertical-align: middle !important;
+    margin-right: 8px !important;
+}
+
 .Header h1, .Header h1 a, .Header h1 a:hover, .Header h1 a:visited {
     color: #ffffff !important;
     font-weight: 900 !important;
-    font-size: 26px !important;
+    font-size: 24px !important;
     letter-spacing: -0.5px !important;
     background: transparent !important;
+    text-transform: none !important;
+    vertical-align: middle !important;
 }
 .Header p {
     display: none !important;
