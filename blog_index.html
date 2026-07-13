@@ -2979,27 +2979,24 @@ margin-left:40px
     <!-- ⚠️ 구글 블로그 파서(XML b:skin)의 변수 오독 및 캐시 오염을 원천 우회하는 일반 인라인 <style> 방어막 태그 주입 -->
     <style type='text/css'>
       /*<![CDATA[*/
-      body .page_body img,
-      body .page_body .af-header img.af-logo-icon,
-      body .page_body .af-hero img.af-hero-arrow,
-      body .page_body .mobile-bottom-nav img.nav-icon {
+      img, .page_body img, .af-header img.af-logo-icon, .af-hero img.af-hero-arrow, .mobile-bottom-nav img.nav-icon {
           width: auto !important;
           height: auto !important;
           max-width: none !important;
       }
-      body .page_body .af-header img.af-logo-icon {
+      .af-header img.af-logo-icon {
           width: 35px !important;
           height: 32px !important;
           min-width: 35px !important;
           max-width: 35px !important;
       }
-      body .page_body .af-hero img.af-hero-arrow {
+      .af-hero img.af-hero-arrow {
           width: 24px !important;
           height: 24px !important;
           min-width: 24px !important;
           max-width: 24px !important;
       }
-      body .page_body .mobile-bottom-nav img.nav-icon {
+      .mobile-bottom-nav img.nav-icon {
           width: 22px !important;
           height: 22px !important;
           min-width: 22px !important;
