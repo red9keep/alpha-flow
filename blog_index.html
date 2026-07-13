@@ -12,6 +12,15 @@ body {
     background-image: none !important;
     background-color: #0b0e14 !important; /* 프로토타입 테마 메인 백그라운드 색상 */
 }
+/* [CSS 완전 소멸] 구식 블로그 이름(흰색 AlphaFlow 글씨), 구식 상단 헤더 컨테이너, 빈 자리 홀더를 흔적도 없이 영구 차단합니다 */
+.centered-top-placeholder, .centered-top-container, .Header, .blog-name, header, .header-widget, #header {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
 .bg-photo-overlay, .bg-photo-container, .bg-photo {
     display: none !important;
 }
