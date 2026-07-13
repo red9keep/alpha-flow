@@ -643,3 +643,34 @@ a {
     }
 }
 
+/* ⚠️ 구글 블로그 전역 모바일 프레임워크 이미지 오염 강제 격퇴용 3중 체인 가중치 최적화 스타일 */
+body .page_body img,
+body .page_body .af-header img.af-logo-icon,
+body .page_body .af-hero img.af-hero-arrow,
+body .page_body .mobile-bottom-nav img.nav-icon {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+}
+
+body .page_body .af-header img.af-logo-icon {
+    width: 35px !important;
+    height: 32px !important;
+    min-width: 35px !important;
+    max-width: 35px !important;
+}
+
+body .page_body .af-hero img.af-hero-arrow {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+}
+
+body .page_body .mobile-bottom-nav img.nav-icon {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+}
+
