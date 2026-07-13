@@ -54,37 +54,52 @@ function createBrandLogoHeader(container) {
 // 상단 D-DAY 실적 롤링 뉴스 슬라이더 배너 생성 함수
 function createRollingNewsBanner(container) {
     const bannerWrapper = document.createElement('div');
-    bannerWrapper.className = 'rolling-banner-container';
+    bannerWrapper.className = 'af-hero';
     
     // 뉴스 슬라이더 내부 리스트 마크업 (실적 및 일정 배지 형태)
     bannerWrapper.innerHTML = `
-        <div class="banner-slide-wrapper">
-            <div class="banner-slide active">
-                <div class="banner-content">
-                    <span class="dday-badge">D-DAY</span>
-                    <span class="banner-title">AVGO 브로드컴 실적 발표 및 분석 가이드</span>
+        <div class="af-hero-slide-wrapper">
+            <div class="af-hero-slide active">
+                <div class="af-hero-content">
+                    <div class="af-hero-info">
+                        <div class="af-hero-title-row">
+                            <span class="af-badge-dday">D-DAY</span>
+                            <span class="af-hero-ticker">AVGO</span>
+                        </div>
+                        <span class="af-hero-subtitle">브로드컴 실적 발표 및 분석 가이드</span>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-arrow" />
                 </div>
-                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
             </div>
-            <div class="banner-slide">
-                <div class="banner-content">
-                    <span class="dday-badge info">D-3</span>
-                    <span class="banner-title">TSMC 월간 매출 실적 속보 및 가동률 분석</span>
+            <div class="af-hero-slide">
+                <div class="af-hero-content">
+                    <div class="af-hero-info">
+                        <div class="af-hero-title-row">
+                            <span class="af-badge-dday info">D-3</span>
+                            <span class="af-hero-ticker">TSMC</span>
+                        </div>
+                        <span class="af-hero-subtitle">월간 매출 실적 속보 및 가동률 분석</span>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-arrow" />
                 </div>
-                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
             </div>
-            <div class="banner-slide">
-                <div class="banner-content">
-                    <span class="dday-badge success">EVENT</span>
-                    <span class="banner-title">미국 CPI 발표 일정 및 연준 금리 모니터링</span>
+            <div class="af-hero-slide">
+                <div class="af-hero-content">
+                    <div class="af-hero-info">
+                        <div class="af-hero-title-row">
+                            <span class="af-badge-dday success">EVENT</span>
+                            <span class="af-hero-ticker">CPI</span>
+                        </div>
+                        <span class="af-hero-subtitle">미국 CPI 발표 일정 및 금리 모니터링</span>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="af-arrow" />
                 </div>
-                <img src="https://cdn.jsdelivr.net/gh/red9keep/alpha-flow@main/images/icons/chevron-right.svg" class="banner-arrow" />
             </div>
         </div>
-        <div class="banner-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <div class="af-dots">
+            <span class="af-dot active"></span>
+            <span class="af-dot"></span>
+            <span class="af-dot"></span>
         </div>
     `;
     
@@ -102,8 +117,8 @@ function createRollingNewsBanner(container) {
 
 // 배너 롤링 로직 시스템
 function initBannerSlider(banner) {
-    const slides = banner.querySelectorAll('.banner-slide');
-    const dots = banner.querySelectorAll('.dot');
+    const slides = banner.querySelectorAll('.af-hero-slide');
+    const dots = banner.querySelectorAll('.af-dot');
     let currentSlide = 0;
     const slideInterval = 4000; // 4초마다 롤링
 
@@ -155,7 +170,7 @@ function createDashboardTabs(container) {
     `;
 
     // 롤링 뉴스 배너(.rolling-banner-container) 바로 다음에 주입되도록 설계
-    const rollingBanner = document.querySelector('.rolling-banner-container');
+    const rollingBanner = document.querySelector('.af-hero');
     if (rollingBanner) {
         rollingBanner.parentNode.insertBefore(tabSection, rollingBanner.nextSibling);
     } else {
