@@ -2976,7 +2976,9 @@ margin-left:40px
     <script type='text/javascript'>
       //<![CDATA[
       (function() {
-          // 푸시할 때마다 매번 바뀌는 타임스탬프를 쿼리 파라미터로 사용하여 CDN 캐시 완벽 우회
+          // 브릿지 성공 진입 시 알림창 출력 (물리적 작동 여부 정밀 진단용)
+          alert("★ [연결 성공] 깃허브와 구글 블로그가 정상적으로 연결 작동 중입니다! ★");
+
           const bust = new Date().getTime(); 
 
           // 1. 외부 최신 스타일시트(style.css) 동적 인젝션
